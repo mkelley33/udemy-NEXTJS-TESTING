@@ -58,8 +58,8 @@
     "prettier/prettier": [
       "warn",
       {
-        "printWidth": 80,
-        "singleQuote": false,
+        "printWidth": 120,
+        "singleQuote": true,
         "endOfLine": "auto"
       }
     ],
