@@ -10,11 +10,15 @@ describe('Reservation page', () => {
     expect(seatCountText).toBeInTheDocument();
   });
 
-  it('should show sold out message', async () => {
+  it('should show sold out message and not show the purchase button if no seats are available', async () => {
     render(<Reservation showId={1} submitPurchase={jest.fn()} />);
     const soldOutMessage = await screen.findByRole('heading', {
       name: /^show is sold out!$/i,
     });
     expect(soldOutMessage).toBeInTheDocument();
+    const purchaseButton = screen.queryByRole('button', {
+      name: /^purchase$/i,
+    });
+    expect(purchaseButton).not.toBeInTheDocument();
   });
 });
