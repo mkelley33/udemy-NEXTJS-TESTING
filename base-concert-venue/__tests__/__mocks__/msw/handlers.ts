@@ -11,7 +11,9 @@ export const handlers = [
     const { showId } = req.params as { showId: string };
     return res(ctx.json({ show: fakeShows[+showId] }));
   }),
-  rest.get(`${host}users/:userId/reservations`, async (req, res, ctx) =>
-    res(ctx.json({ userReservations: fakeUserReservations }))
-  ),
+  rest.get(`${host}users/:userId/reservations`, async (req, res, ctx) => {
+    const { userId } = req.params as { userId: string };
+    const userReservations = +userId === 1 ? fakeUserReservations : [];
+    return res(ctx.json({ userReservations }));
+  }),
 ];
