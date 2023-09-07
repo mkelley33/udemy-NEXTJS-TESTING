@@ -5,16 +5,16 @@
 //
 // This "database" is horribly inefficient and will be a problem
 // when Popular Concert Venue has more than five people attending their shows.
-import jsonPatch, { Operation } from "fast-json-patch";
-import { promises as fs } from "fs";
-import path from "path";
+import jsonPatch, { Operation } from 'fast-json-patch';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-import type { Band } from "@/lib/features/bands/types";
-import type { Reservation } from "@/lib/features/reservations/types";
-import type { ShowWithoutAvailableSeatCount } from "@/lib/features/shows/types";
-import type { AuthUser } from "@/lib/features/users/types";
+import type { Band } from '@/lib/features/bands/types';
+import type { Reservation } from '@/lib/features/reservations/types';
+import type { ShowWithoutAvailableSeatCount } from '@/lib/features/shows/types';
+import type { AuthUser } from '@/lib/features/users/types';
 
-import { getDbPath } from "./constants";
+import { getDbPath } from './constants';
 
 type JsonDataType =
   | AuthUser
@@ -23,10 +23,10 @@ type JsonDataType =
   | Reservation;
 
 export enum filenames {
-  users = "users.json",
-  bands = "bands.json",
-  shows = "shows.json",
-  reservations = "reservations.json",
+  users = 'users.json',
+  bands = 'bands.json',
+  shows = 'shows.json',
+  reservations = 'reservations.json',
 }
 
 const defaultDbPath = getDbPath();
@@ -59,7 +59,7 @@ export async function writeJSONToFile<T extends JsonDataType>(
 ): Promise<void> {
   const filePath = path.join(dbPath, filename);
   const jsonData = JSON.stringify(data);
-  await fs.writeFile(filePath, jsonData, { flag: "w" });
+  await fs.writeFile(filePath, jsonData, { flag: 'w' });
 }
 
 export async function deleteItem<T extends JsonDataType>(
