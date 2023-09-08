@@ -1,5 +1,5 @@
 /* ****** Add new user ***** */
-import { Operation } from "fast-json-patch";
+import { Operation } from 'fast-json-patch';
 
 import {
   deleteItem,
@@ -8,19 +8,20 @@ import {
   getJSONfromFile,
   updateItem,
   writeJSONToFile,
-} from "@/lib/db/db-utils";
-import { getReservations } from "@/lib/features/reservations/queries";
-import type { ReservationWithShow } from "@/lib/features/reservations/types";
-import { getShowById } from "@/lib/features/shows/queries";
+  dbPath,
+} from '@/__tests__/__mocks__/fakeData';
+import { getReservations } from '@/lib/features/reservations/queries';
+import type { ReservationWithShow } from '@/lib/features/reservations/types';
+import { getShowById } from '@/lib/features/shows/queries';
 
-import type { AuthUser, NewAuthUser } from "./types";
+import type { AuthUser, NewAuthUser } from './types';
 
 export function getUsers(): Promise<AuthUser[]> {
-  return getJSONfromFile<AuthUser>(filenames.users);
+  return getJSONfromFile<AuthUser>(filenames.users, dbPath);
 }
 
 export async function getUserById(userId: number): Promise<AuthUser> {
-  return getItemById<AuthUser>(userId, filenames.users, "user");
+  return getItemById<AuthUser>(userId, filenames.users, 'user');
 }
 
 export async function addUser(newUserData: NewAuthUser): Promise<AuthUser> {
@@ -38,7 +39,7 @@ export async function addUser(newUserData: NewAuthUser): Promise<AuthUser> {
   const newUserId = maxId + 1;
 
   const newUser = { ...newUserData, id: newUserId };
-  await writeJSONToFile(filenames.users, [...users, newUser]);
+  await writeJSONToFile(filenames.users, [...users, newUser], dbPath);
   return newUser;
 }
 

@@ -1,24 +1,28 @@
 /* eslint-disable no-param-reassign */
-import { venueCapacity } from "@/lib/db/constants";
+import { venueCapacity } from '@/lib/db/constants';
 import {
   filenames,
   getItemById,
   getJSONfromFile,
   writeJSONToFile,
-} from "@/lib/db/db-utils";
-import { getAvailableSeatCountByShowId } from "@/lib/features/reservations/queries";
+  dbPath,
+} from '@/__tests__/__mocks__/fakeData';
+import { getAvailableSeatCountByShowId } from '@/lib/features/reservations/queries';
 
-import type { Show, ShowWithoutAvailableSeatCount } from "./types";
+import type { Show, ShowWithoutAvailableSeatCount } from './types';
 
 export async function writeShows(
   newShowsArray: ShowWithoutAvailableSeatCount[]
 ): Promise<void> {
-  await writeJSONToFile(filenames.shows, newShowsArray);
+  await writeJSONToFile(filenames.shows, newShowsArray, dbPath);
 }
 
 export async function getShows(): Promise<Show[]> {
   const showsMinusAvailableSeatCount =
-    await getJSONfromFile<ShowWithoutAvailableSeatCount>(filenames.shows);
+    await getJSONfromFile<ShowWithoutAvailableSeatCount>(
+      filenames.shows,
+      dbPath
+    );
 
   const availableSeatCountByShowId = await getAvailableSeatCountByShowId();
 
@@ -39,7 +43,7 @@ export async function getShowById(showId: number): Promise<Show> {
   const showWithoutSeatCount = await getItemById<ShowWithoutAvailableSeatCount>(
     showId,
     filenames.shows,
-    "show"
+    'show'
   );
   const availableSeatCountByShowId = await getAvailableSeatCountByShowId();
   const availableSeatCount =

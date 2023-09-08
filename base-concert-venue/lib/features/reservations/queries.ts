@@ -1,18 +1,19 @@
-import { venueCapacity } from "@/lib/db/constants";
+import { venueCapacity } from '@/lib/db/constants';
 import {
   deleteItem,
   filenames,
   getItemById,
   getJSONfromFile,
   writeJSONToFile,
-} from "@/lib/db/db-utils";
+  dbPath,
+} from '@/__tests__/__mocks__/fakeData';
 
-import type { Reservation } from "./types";
+import type { Reservation } from './types';
 
 type availableSeatCountByShowId = Record<number, number>;
 
 export async function getReservations(): Promise<Array<Reservation>> {
-  return getJSONfromFile<Reservation>(filenames.reservations);
+  return getJSONfromFile<Reservation>(filenames.reservations, dbPath);
 }
 
 export async function writeReservations(
@@ -20,7 +21,8 @@ export async function writeReservations(
 ): Promise<void> {
   return writeJSONToFile<Reservation>(
     filenames.reservations,
-    newReservationsArray
+    newReservationsArray,
+    dbPath
   );
 }
 
@@ -38,11 +40,11 @@ export async function getReservationById(
     const reservation = await getItemById<Reservation>(
       id,
       filenames.reservations,
-      "reservation"
+      'reservation'
     );
     return reservation;
   } catch (e) {
-    if (e instanceof Error && e.message === "reservation not found") {
+    if (e instanceof Error && e.message === 'reservation not found') {
       return null;
     }
     throw e;
