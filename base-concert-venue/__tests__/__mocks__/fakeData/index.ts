@@ -13,7 +13,7 @@ import type { AuthUser } from '@/lib/features/users/types';
 // store fake data in JSON files for easier command-line db reset
 const JSON_FILEPATH = path.join(__dirname, 'json');
 
-const dbPath =
+export const dbPath =
   typeof Cypress !== 'undefined' ? Cypress.env('DB_PATH') : process.env.DB_PATH;
 
 type JsonDataType =
