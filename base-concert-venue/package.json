@@ -14,9 +14,10 @@
     "e2e:headless": "npm run build:test && npm run start:test . http://localhost:3000 \"cypress run --e2e\"",
     "component": "cypress open --component",
     "component:headless": "cypress run --component",
-    "cypress:open": "export NODE_ENV=\"test\" && env-cmd -f .env.test.local cypress open --e2e",
+    "cypress:open": "env-cmd -f .env.test.local cypress open --e2e",
     "cypress:start": "start-server-and-test 'npm run start:test' 3000 'npm run cypress:open'",
-    "cypress:build": "npm run build:test && npm run cypress:start"
+    "cypress:build": "npm run build:test && npm run cypress:start",
+    "cypress:run": "start-server-and-test 'npm run start:test' 3000 'env-cmd -f .env.test.local cypress run'"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.0",
