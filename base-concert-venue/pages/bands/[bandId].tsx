@@ -1,5 +1,5 @@
 import { Box, Heading, Link, Text, VStack } from '@chakra-ui/react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 import { LoadingSpinner } from '@/components/_common/LoadingSpinner';
 import { QueryError } from '@/components/_common/QueryError';
@@ -14,6 +14,7 @@ export async function getStaticProps({
   params: { bandId: number };
 }) {
   const { bandId } = params;
+  console.log('band id >>>>>>>', bandId);
   let band = null;
   let error = null;
   try {
@@ -29,9 +30,11 @@ export async function getStaticProps({
 export async function getStaticPaths() {
   const bands = await getBands();
 
-  const paths = bands.map((band) => ({
-    params: { bandId: band.id.toString() },
-  }));
+  const paths = bands
+    .filter((band) => band !== null)
+    .map((band) => ({
+      params: { bandId: band.id.toString() },
+    }));
 
   // Pre-render only these paths at build time.
   // { fallback: blocking } means pages for other paths

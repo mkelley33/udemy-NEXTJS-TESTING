@@ -7,6 +7,7 @@ import {
 export const resetDB = async () => {
   // failsafe against resetting production db!
   const safeToReset = process.env.NODE_ENV === 'test';
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV);
   if (!safeToReset) {
     // eslint-disable-next-line prettier/prettier, no-console
     console.log(

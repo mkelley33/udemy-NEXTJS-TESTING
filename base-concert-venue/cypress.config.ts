@@ -1,5 +1,6 @@
 import { defineConfig } from 'cypress';
 import dotenv from 'dotenv';
+import { addBand } from '@/lib/features/bands/queries';
 
 dotenv.config({ path: './.env.test.local' });
 
@@ -12,6 +13,10 @@ export default defineConfig({
         ...process.env,
         ...config.env,
       };
+
+      on('task', {
+        addBand: (newBand) => addBand(newBand).then((res) => null),
+      });
 
       return config;
     },

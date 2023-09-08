@@ -37,7 +37,7 @@ export async function getItemById<ItemType extends JsonDataType>(
   itemType: string
 ): Promise<ItemType> {
   const items = await getJSONfromFile<ItemType>(filename, dbPath);
-  const itemData = items.filter((u: ItemType) => u.id === itemId);
+  const itemData = items.filter((u: ItemType) => u !== null && u.id === itemId);
   if (itemData.length < 1) throw new Error(`${itemType} not found`);
   if (itemData.length > 1) throw new Error(`duplicate ${itemType} found`);
   return itemData[0];
@@ -121,10 +121,10 @@ export async function updateItem<DataType extends JsonDataType>(
 export const readFakeData = async () => {
   const [fakeBands, fakeReservations, fakeShows, fakeUsers] = await Promise.all(
     [
-      getJSONfromFile(filenames.bands, JSON_FILEPATH),
-      getJSONfromFile(filenames.reservations, JSON_FILEPATH),
-      getJSONfromFile(filenames.shows, JSON_FILEPATH),
-      getJSONfromFile(filenames.users, JSON_FILEPATH),
+      getJSONfromFile(filenames.bands, dbPath),
+      getJSONfromFile(filenames.reservations, dbPath),
+      getJSONfromFile(filenames.shows, dbPath),
+      getJSONfromFile(filenames.users, dbPath),
     ]
   );
 
