@@ -1,4 +1,4 @@
-import type { Band } from "@/lib/features/bands/types";
+import type { Band } from '@/lib/features/bands/types';
 
 export interface ShowWithoutAvailableSeatCount {
   id: number;

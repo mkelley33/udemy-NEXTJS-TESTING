@@ -11,7 +11,7 @@ import type { ReservationWithShow } from '@/lib/features/reservations/types';
 import { LoadingSpinner } from '../_common/LoadingSpinner';
 
 const getUserReservations = async (
-  userId?: number
+  userId?: number,
 ): Promise<Array<ReservationWithShow> | null> => {
   if (!userId && typeof userId !== 'number') return Promise.resolve(null);
   const data = await axiosInstance.get<

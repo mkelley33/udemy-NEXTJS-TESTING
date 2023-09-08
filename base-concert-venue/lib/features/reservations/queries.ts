@@ -1,12 +1,12 @@
-import { venueCapacity } from '@/lib/db/constants';
 import {
+  dbPath,
   deleteItem,
   filenames,
   getItemById,
   getJSONfromFile,
   writeJSONToFile,
-  dbPath,
 } from '@/__tests__/__mocks__/fakeData';
+import { venueCapacity } from '@/lib/db/constants';
 
 import type { Reservation } from './types';
 
@@ -17,30 +17,30 @@ export async function getReservations(): Promise<Array<Reservation>> {
 }
 
 export async function writeReservations(
-  newReservationsArray: Array<Reservation>
+  newReservationsArray: Array<Reservation>,
 ): Promise<void> {
   return writeJSONToFile<Reservation>(
     filenames.reservations,
     newReservationsArray,
-    dbPath
+    dbPath,
   );
 }
 
 export async function getReservationsByShowId(
-  showId: number
+  showId: number,
 ): Promise<Array<Reservation>> {
   const reservations = await getReservations();
   return reservations.filter((r) => r.showId === showId);
 }
 
 export async function getReservationById(
-  id: number
+  id: number,
 ): Promise<Reservation | null> {
   try {
     const reservation = await getItemById<Reservation>(
       id,
       filenames.reservations,
-      'reservation'
+      'reservation',
     );
     return reservation;
   } catch (e) {
@@ -65,7 +65,7 @@ export async function getAvailableSeatCountByShowId(): Promise<availableSeatCoun
 
 // return value represents whether or not show is sold out
 export async function addReservation(
-  reservation: Reservation
+  reservation: Reservation,
 ): Promise<Reservation> {
   // don't write the same reservation twice
   const existingReservation = await getReservationById(reservation.id);

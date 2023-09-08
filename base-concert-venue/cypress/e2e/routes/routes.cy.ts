@@ -10,4 +10,7 @@ it('displays correct heading when navigating to the bands route', () => {
   cy.findByRole('heading', { name: /^our illustrious performers$/i });
 });
 
-export {};
+it('displays correct band name for band route that existed at build time', () => {
+  cy.visit('/bands/1');
+  cy.findByRole('heading', { name: /^shamrock pete$/i }).should('exist');
+});

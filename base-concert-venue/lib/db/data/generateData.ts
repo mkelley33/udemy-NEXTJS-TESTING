@@ -3,15 +3,15 @@
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
-import { getBands, writeBands } from "@/lib/features/bands/queries";
-import type { Band, Image } from "@/lib/features/bands/types";
-import { addReservation } from "@/lib/features/reservations/queries";
-import { writeShows } from "@/lib/features/shows/queries";
-import type { ShowWithoutAvailableSeatCount } from "@/lib/features/shows/types";
+import { getBands, writeBands } from '@/lib/features/bands/queries';
+import type { Band, Image } from '@/lib/features/bands/types';
+import { addReservation } from '@/lib/features/reservations/queries';
+import { writeShows } from '@/lib/features/shows/queries';
+import type { ShowWithoutAvailableSeatCount } from '@/lib/features/shows/types';
 
-import { venueCapacity } from "../constants";
+import { venueCapacity } from '../constants';
 import {
   adjectives,
   bandImages,
@@ -19,12 +19,12 @@ import {
   conjunctions,
   genres,
   nouns,
-} from "./bandData";
+} from './bandData';
 
 function getUnique<ItemType>(
   items: Array<ItemType>,
   itemType: string,
-  containerType: string
+  containerType: string,
 ): ItemType {
   // find a random item and swap it with the last item for popping
   const randomIndex = Math.floor(Math.random() * items.length);
@@ -46,16 +46,16 @@ function getRandom(words: Array<string>) {
 }
 
 const getArticle = (adj: string, noun: string) => {
-  if (noun[noun.length - 1] === "s") return "";
-  if (["a", "e", "i", "o", "u"].includes(adj[0])) return "an";
-  return "a";
+  if (noun[noun.length - 1] === 's') return '';
+  if (['a', 'e', 'i', 'o', 'u'].includes(adj[0])) return 'an';
+  return 'a';
 };
 
 export const makeDescription = (): string => {
   const genre = getRandom(genres);
-  const noun = getUnique(nouns, "nouns", "descriptions");
-  const adj1 = getUnique(adjectives, "adjectives", "descriptions");
-  const adj2 = getUnique(adjectives, "adjectives", "descriptions");
+  const noun = getUnique(nouns, 'nouns', 'descriptions');
+  const adj1 = getUnique(adjectives, 'adjectives', 'descriptions');
+  const adj2 = getUnique(adjectives, 'adjectives', 'descriptions');
   const conjunction = getRandom(conjunctions);
 
   const article = getArticle(adj2, noun);
@@ -69,12 +69,12 @@ function generateBand(id: number, name: string, image: Image): Band {
 }
 
 async function generateBands() {
-  console.log("\t\tGenerating bands...");
+  console.log('\t\tGenerating bands...');
   const bands = await getBands();
   const newBands: Array<Band> = [];
   while (newBands.length + bands.length < 14) {
-    const name = getUnique(bandNames, "band name", "bands");
-    const image = getUnique(bandImages, "band images", "bands");
+    const name = getUnique(bandNames, 'band name', 'bands');
+    const image = getUnique(bandImages, 'band images', 'bands');
 
     const id = Math.floor(Math.random() * 100000);
     const band = generateBand(id, name, image);
@@ -100,14 +100,14 @@ async function generateavailableSeatCount(showId: number): Promise<void> {
 }
 
 async function generateShows(bands: Array<Band>) {
-  console.log("\t\tGenerating shows...");
+  console.log('\t\tGenerating shows...');
   const today = dayjs();
   const shows: Array<ShowWithoutAvailableSeatCount> = [];
 
   for (let daysInFuture = 0; daysInFuture < 14; daysInFuture++) {
-    const scheduledAt = today.clone().add(daysInFuture, "days");
+    const scheduledAt = today.clone().add(daysInFuture, 'days');
     const showId = scheduledAt.unix();
-    const band = getUnique(bands, "bands", "shows");
+    const band = getUnique(bands, 'bands', 'shows');
 
     const show = { id: showId, scheduledAt: scheduledAt.toDate(), band };
     await generateavailableSeatCount(showId);
@@ -117,7 +117,7 @@ async function generateShows(bands: Array<Band>) {
 }
 
 export async function generateData(): Promise<void> {
-  console.log("\tGenerating data...");
+  console.log('\tGenerating data...');
   const bands = await generateBands();
   await generateShows(bands);
 }

@@ -6,18 +6,18 @@ import {
   ListItem,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import React from "react";
-import useSWR from "swr";
+} from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React from 'react';
+import useSWR from 'swr';
 
-import { LoadingSpinner } from "@/components/_common/LoadingSpinner";
-import { BandLinkHeading } from "@/components/bands/BandLinkHeading";
-import { axiosInstance } from "@/lib/axios/axiosInstance";
-import { routes } from "@/lib/axios/routes";
-import { getShows as getShowsViaDbQuery } from "@/lib/features/shows/queries";
-import type { Show } from "@/lib/features/shows/types";
-import { formatDate } from "@/lib/features/shows/utils";
+import { LoadingSpinner } from '@/components/_common/LoadingSpinner';
+import { BandLinkHeading } from '@/components/bands/BandLinkHeading';
+import { axiosInstance } from '@/lib/axios/axiosInstance';
+import { routes } from '@/lib/axios/routes';
+import { getShows as getShowsViaDbQuery } from '@/lib/features/shows/queries';
+import type { Show } from '@/lib/features/shows/types';
+import { formatDate } from '@/lib/features/shows/utils';
 
 const THIRTY_SECONDS = 30 * 1000;
 
@@ -50,12 +50,12 @@ export default function Shows({
   const router = useRouter();
 
   const { data: shows, isValidating } = useSWR<Array<Show>>(
-    "/api/shows",
+    '/api/shows',
     getShowsViaAPI,
     {
       fallbackData: isrShows,
       refreshInterval: THIRTY_SECONDS,
-    }
+    },
   );
 
   return (

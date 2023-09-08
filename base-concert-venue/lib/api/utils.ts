@@ -1,4 +1,4 @@
-import type { NextApiRequest } from "next";
+import type { NextApiRequest } from 'next';
 
 export const processApiError = (error: unknown) => {
   let status: number;
@@ -7,7 +7,7 @@ export const processApiError = (error: unknown) => {
   if (error instanceof Error) {
     message = error.message;
 
-    if (error.name === "RecordNotFound") {
+    if (error.name === 'RecordNotFound') {
       status = 404;
     } else {
       status = 500;

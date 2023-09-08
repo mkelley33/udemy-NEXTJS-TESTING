@@ -1,7 +1,7 @@
-import { Spinner, Text } from "@chakra-ui/react";
+import { Spinner, Text } from '@chakra-ui/react';
 
 export function LoadingSpinner({ display }: { display: boolean }) {
-  const displaySpinner = display ? "inherit" : "none";
+  const displaySpinner = display ? 'inherit' : 'none';
 
   return (
     <Spinner

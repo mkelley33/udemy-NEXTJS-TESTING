@@ -1,8 +1,8 @@
-import { Box, Flex, ListItem } from "@chakra-ui/react";
+import { Box, Flex, ListItem } from '@chakra-ui/react';
 
-import { BandLinkHeading } from "@/components/bands/BandLinkHeading";
-import type { ReservationWithShow } from "@/lib/features/reservations/types";
-import { formatDate } from "@/lib/features/shows/utils";
+import { BandLinkHeading } from '@/components/bands/BandLinkHeading';
+import type { ReservationWithShow } from '@/lib/features/reservations/types';
+import { formatDate } from '@/lib/features/shows/utils';
 
 export const UserReservation = ({
   reservation,

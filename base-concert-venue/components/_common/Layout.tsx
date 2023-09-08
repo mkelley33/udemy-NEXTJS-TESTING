@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
-import React from "react";
+import { Box } from '@chakra-ui/react';
+import React from 'react';
 
-import { NavBar } from "../nav/Nav";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { NavBar } from '../nav/Nav';
+import { LoadingSpinner } from './LoadingSpinner';
 
 export const Layout: React.FC = ({ children }) => (
   <Box h="100vh" w="100vw">

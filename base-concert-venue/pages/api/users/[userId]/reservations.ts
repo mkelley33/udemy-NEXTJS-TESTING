@@ -1,7 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { createHandler } from "@/lib/api/handler";
-import { getReservationsByUserId } from "@/lib/features/users/queries";
+import { createHandler } from '@/lib/api/handler';
+import { getReservationsByUserId } from '@/lib/features/users/queries';
 
 const handler = createHandler({ authRequired: true });
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {

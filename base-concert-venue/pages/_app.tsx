@@ -1,12 +1,12 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import type { AppInitialProps } from "next/app";
-import type { Router } from "next/router";
-import type { NextComponentType } from "next/types";
-import { SessionProvider } from "next-auth/react";
+import { ChakraProvider } from '@chakra-ui/react';
+import type { AppInitialProps } from 'next/app';
+import type { Router } from 'next/router';
+import type { NextComponentType } from 'next/types';
+import { SessionProvider } from 'next-auth/react';
 
-import { Layout } from "@/components/_common/Layout";
-import { Auth } from "@/components/auth/Auth";
-import { theme } from "@/lib/theme";
+import { Layout } from '@/components/_common/Layout';
+import { Auth } from '@/components/auth/Auth';
+import { theme } from '@/lib/theme';
 
 // note: need to use `type` (not `interface`) because not all
 // NextComponentType members are statically typed
@@ -33,7 +33,7 @@ export default function PopularMusicVenue({
             </Auth>
           ) : (
             <Component {...pageProps} />
-          )}{" "}
+          )}{' '}
         </Layout>
       </ChakraProvider>
     </SessionProvider>

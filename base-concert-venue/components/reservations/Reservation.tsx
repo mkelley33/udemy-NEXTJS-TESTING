@@ -12,17 +12,17 @@ import {
   Stack,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import React from "react";
-import useSWR from "swr";
+} from '@chakra-ui/react';
+import React from 'react';
+import useSWR from 'swr';
 
-import { LoadingSpinner } from "@/components/_common/LoadingSpinner";
-import { QueryError } from "@/components/_common/QueryError";
-import { axiosInstance } from "@/lib/axios/axiosInstance";
-import { routes } from "@/lib/axios/routes";
-import { generateRandomId } from "@/lib/features/reservations/utils";
-import type { Show } from "@/lib/features/shows/types";
-import { formatDate } from "@/lib/features/shows/utils";
+import { LoadingSpinner } from '@/components/_common/LoadingSpinner';
+import { QueryError } from '@/components/_common/QueryError';
+import { axiosInstance } from '@/lib/axios/axiosInstance';
+import { routes } from '@/lib/axios/routes';
+import { generateRandomId } from '@/lib/features/reservations/utils';
+import type { Show } from '@/lib/features/shows/types';
+import { formatDate } from '@/lib/features/shows/utils';
 
 const DEFAULT_TICKET_COUNT = 2;
 const FIFTEEN_SECONDS = 15 * 1000;
@@ -61,7 +61,7 @@ export const Reservation = ({ showId, submitPurchase }: ReservationProps) => {
       revalidateOnReconnect: true,
       revalidateOnFocus: true,
       refreshInterval: FIFTEEN_SECONDS,
-    }
+    },
   );
 
   if (error) return <QueryError message="Could not retrieve show info" />;
@@ -82,7 +82,7 @@ export const Reservation = ({ showId, submitPurchase }: ReservationProps) => {
             <>
               <Heading
                 size="md"
-                color={show.availableSeatCount < 10 ? "red.500" : "inherit"}
+                color={show.availableSeatCount < 10 ? 'red.500' : 'inherit'}
               >
                 {show.availableSeatCount} seats left
               </Heading>

@@ -1,9 +1,9 @@
 import {
+  dbPath,
   filenames,
   getItemById,
   getJSONfromFile,
   writeJSONToFile,
-  dbPath,
 } from '@/__tests__/__mocks__/fakeData';
 
 import type { Band } from './types';

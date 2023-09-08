@@ -1,6 +1,6 @@
-import { Box } from "@chakra-ui/react";
-import Image from "next/image";
-import { ReactElement } from "react";
+import { Box } from '@chakra-ui/react';
+import Image from 'next/image';
+import { ReactElement } from 'react';
 
 export function SplashImage(): ReactElement {
   return (

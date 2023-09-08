@@ -1,15 +1,15 @@
-import { Box, Button, Heading, HStack, Stack, Text } from "@chakra-ui/react";
-import { type AxiosResponse } from "axios";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { Box, Button, Heading, HStack, Stack, Text } from '@chakra-ui/react';
+import { type AxiosResponse } from 'axios';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
-import { LoadingSpinner } from "@/components/_common/LoadingSpinner";
-import { QueryError } from "@/components/_common/QueryError";
-import { axiosInstance } from "@/lib/axios/axiosInstance";
-import { routes } from "@/lib/axios/routes";
-import type { ReservationWithShow } from "@/lib/features/reservations/types";
+import { LoadingSpinner } from '@/components/_common/LoadingSpinner';
+import { QueryError } from '@/components/_common/QueryError';
+import { axiosInstance } from '@/lib/axios/axiosInstance';
+import { routes } from '@/lib/axios/routes';
+import type { ReservationWithShow } from '@/lib/features/reservations/types';
 
 // data strategy: Client-Side Rendering
 // https://nextjs.org/docs/basic-features/data-fetching/client-side
@@ -35,7 +35,7 @@ export default function Confirmation() {
             showId,
             userId,
             seatCount,
-          }
+          },
         )
         .then((data) => setReservation(data.data.reservation))
         .catch((e) => {

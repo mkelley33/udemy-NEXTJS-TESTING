@@ -1,11 +1,11 @@
-import { Box, Heading, List, ListItem, Stack, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Heading, List, ListItem, Stack, Text } from '@chakra-ui/react';
+import React from 'react';
 
-import { BandLinkHeading } from "@/components/bands/BandLinkHeading";
-import { getBands } from "@/lib/features/bands/queries";
-import type { Band } from "@/lib/features/bands/types";
+import { BandLinkHeading } from '@/components/bands/BandLinkHeading';
+import { getBands } from '@/lib/features/bands/queries';
+import type { Band } from '@/lib/features/bands/types';
 
-const removeLeadingThe = (bandName: string) => bandName.replace(/^the /i, "");
+const removeLeadingThe = (bandName: string) => bandName.replace(/^the /i, '');
 
 // ISR reference
 // https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration
@@ -13,7 +13,7 @@ const removeLeadingThe = (bandName: string) => bandName.replace(/^the /i, "");
 export async function getStaticProps() {
   const isrBands = await getBands();
   isrBands.sort((a, b) =>
-    removeLeadingThe(a.name) > removeLeadingThe(b.name) ? 0 : -1
+    removeLeadingThe(a.name) > removeLeadingThe(b.name) ? 0 : -1,
   );
 
   return {

@@ -1,7 +1,7 @@
-import { Button } from "@chakra-ui/react";
-import { signOut } from "next-auth/react";
+import { Button } from '@chakra-ui/react';
+import { signOut } from 'next-auth/react';
 
-import { useSessionStatus } from "@/lib/features/users/useSessionStatus";
+import { useSessionStatus } from '@/lib/features/users/useSessionStatus';
 
 export const SignOutButton: React.FC = () => {
   const { isLoading, isLoggedIn } = useSessionStatus();

@@ -1,4 +1,4 @@
-import type { Show } from "../shows/types";
+import type { Show } from '../shows/types';
 // TODO: type vs interface consistency
 export interface Reservation {
   id: number;

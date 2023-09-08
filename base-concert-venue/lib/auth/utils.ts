@@ -1,7 +1,7 @@
-import type { NextApiRequest } from "next";
-import { getToken } from "next-auth/jwt";
+import type { NextApiRequest } from 'next';
+import { getToken } from 'next-auth/jwt';
 
-import { User } from "../features/users/types";
+import { User } from '../features/users/types';
 
 export const validateToken = async (req: NextApiRequest) => {
   const token = await getToken({ req });

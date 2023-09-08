@@ -7,15 +7,15 @@ import {
   Heading,
   Input,
   Stack,
-} from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+} from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { LoadingSpinner } from "@/components/_common/LoadingSpinner";
-import { SignInError } from "@/components/auth/SignInError";
-import { useSessionStatus } from "@/lib/features/users/useSessionStatus";
+import { LoadingSpinner } from '@/components/_common/LoadingSpinner';
+import { SignInError } from '@/components/auth/SignInError';
+import { useSessionStatus } from '@/lib/features/users/useSessionStatus';
 
 interface FormField {
   display: string;
@@ -40,25 +40,25 @@ export default function SignIn() {
   const { isLoading, isLoggedIn } = useSessionStatus();
   if (isLoggedIn) {
     router.push(
-      callbackUrl && typeof callbackUrl === "string" ? callbackUrl : "/user"
+      callbackUrl && typeof callbackUrl === 'string' ? callbackUrl : '/user',
     );
   }
 
   const formFields: Array<FormField> = [
-    { name: "email", display: "Email address", default: "test@test.test" },
-    { name: "password", display: "Password", default: "test" },
+    { name: 'email', display: 'Email address', default: 'test@test.test' },
+    { name: 'password', display: 'Password', default: 'test' },
   ];
 
   const handleSignIn = handleSubmit((data) =>
-    signIn("credentials", {
+    signIn('credentials', {
       ...data,
       redirect: false,
     }).then(
       // @ts-expect-error (docs for signIn return value conflict with TypeScript)
       ({ error }) => {
         if (error) setAuthError(error);
-      }
-    )
+      },
+    ),
   );
 
   return (
@@ -99,7 +99,7 @@ export default function SignIn() {
             <Flex
               mt={4}
               justifyContent="flex-end"
-              style={{ fontFamily: "Unica One" }}
+              style={{ fontFamily: 'Unica One' }}
             >
               <Button
                 bgColor="gray.300"
