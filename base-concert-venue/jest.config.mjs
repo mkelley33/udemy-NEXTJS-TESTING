@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
